@@ -5,8 +5,7 @@ using Vec3 = System.Numerics.Vector3;
 
 namespace Kevin;
 
-sealed class Kevin : Solid, IDashTrigger
-{
+sealed class Kevin : Solid, IDashTrigger {
 
     public bool BouncesPlayer => true;
 
@@ -22,8 +21,7 @@ sealed class Kevin : Solid, IDashTrigger
     Sound sfxMove = null;
     Sound sfxRetract = null;
 
-    public override void Added()
-    {
+    public override void Added() {
         base.Added();
         start = Position;
         routine.Run(Sequence());
@@ -31,18 +29,15 @@ sealed class Kevin : Solid, IDashTrigger
         sfxRetract = World.Add(new Sound(this, Sfx.sfx_zipmover_retract_loop));
     }
 
-    public override void Update()
-    {
+    public override void Update() {
         base.Update();
         routine.Update();
     }
 
-    public void HandleDash(Vec3 velocity)
-    {
+    public void HandleDash(Vec3 velocity) {
         World.SolidRayCast(WorldBounds.Center, (World.Get<Player>().Position - WorldBounds.Center).Normalized(), 100, out var inner, false);
         World.SolidRayCast(inner.Point, inner.Normal, 1000, out var hit);
-        if (hit.Intersections == 0)
-        {
+        if (hit.Intersections == 0) {
             Audio.Play(Sfx.sfx_zipmover_stop, Position);
             TShake = .15f;
             UpdateOffScreen = true;
@@ -52,10 +47,8 @@ sealed class Kevin : Solid, IDashTrigger
         bonked = true;
     }
 
-    private CoEnumerator Sequence()
-    {
-        while (true)
-        {
+    CoEnumerator Sequence() {
+        while (true) {
             while (!bonked) yield return Co.SingleFrame;
 
             bonked = false;
@@ -68,10 +61,8 @@ sealed class Kevin : Solid, IDashTrigger
             // move to target
             sfxMove?.Resume();
             var normal = (target - Position).Normalized();
-            while (Position != target && Vec3.Dot((target - Position).Normalized(), normal) >= 0)
-            {
-                if (bonked)
-                {
+            while (Position != target && Vec3.Dot((target - Position).Normalized(), normal) >= 0) {
+                if (bonked) {
                     start = Position;
                     break;
                 }
@@ -90,10 +81,8 @@ sealed class Kevin : Solid, IDashTrigger
             Audio.Play(Sfx.sfx_zipmover_retract_start, Position);
             sfxRetract?.Resume();
             normal = (start - Position).Normalized();
-            while (Vec3.Dot((start - Position).Normalized(), normal) >= 0)
-            {
-                if (bonked)
-                {
+            while (Vec3.Dot((start - Position).Normalized(), normal) >= 0) {
+                if (bonked) {
                     start = Position;
                     break;
                 }
@@ -113,12 +102,10 @@ sealed class Kevin : Solid, IDashTrigger
         }
     }
 
-    public void CollectSprites(List<Sprite> populate)
-    {
+    public void CollectSprites(List<Sprite> populate) {
         foreach (var vert in WorldVertices) populate.Add(Sprite.CreateBillboard(World, vert, "circle", 2, Color.Red));
 
-        foreach (var face in WorldFaces)
-        {
+        foreach (var face in WorldFaces) {
             if (face.Indices.Count <= 0) continue;
 
             var center = Vec3.Zero;
@@ -129,5 +116,4 @@ sealed class Kevin : Solid, IDashTrigger
                 populate.Add(Sprite.CreateBillboard(World, center + face.Plane.Normal * i * 1.5f, "circle", 1, Color.Green));
         }
     }
-
 }

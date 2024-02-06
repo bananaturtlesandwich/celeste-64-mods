@@ -2,30 +2,26 @@ using Foster.Framework;
 
 namespace DeltaruneExplosion;
 
-sealed class Explosion : Actor, IHaveSprites
-{
+sealed class Explosion : Actor, IHaveSprites {
     float timer = 0;
     int i = 0;
     Subtexture frame = Assets.Subtextures[sprites[0]];
 
-    public override void Update()
-    {
+    public override void Update() {
         timer += Time.Delta;
-        if (timer > 0.05)
-        {
+        if (timer > 0.05) {
             timer = 0;
             i++;
-            if (i == 16) World.Destroy(this);
+            if (i == 16)
+                World.Destroy(this);
             frame = Assets.Subtextures[sprites[i]];
         }
     }
 
-    public void CollectSprites(System.Collections.Generic.List<Sprite> populate)
-    {
+    public void CollectSprites(System.Collections.Generic.List<Sprite> populate) =>
         populate.Add(Sprite.CreateBillboard(World, Position, Assets.Subtextures[sprites[i]], 15, Color.White));
-    }
 
-    private static readonly string[] sprites = [
+    static readonly string[] sprites = [
         "explosion_0",
         "explosion_1",
         "explosion_2",
