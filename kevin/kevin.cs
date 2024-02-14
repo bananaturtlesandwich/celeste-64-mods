@@ -1,5 +1,4 @@
 using Foster.Framework;
-using System.Collections.Generic;
 using CoEnumerator = System.Collections.Generic.IEnumerator<Celeste64.Co>;
 using Vec3 = System.Numerics.Vector3;
 
@@ -99,21 +98,6 @@ sealed class Kevin : Solid, IDashTrigger {
             TShake = .1f;
             UpdateOffScreen = false;
             yield return .5f;
-        }
-    }
-
-    public void CollectSprites(List<Sprite> populate) {
-        foreach (var vert in WorldVertices) populate.Add(Sprite.CreateBillboard(World, vert, "circle", 2, Color.Red));
-
-        foreach (var face in WorldFaces) {
-            if (face.Indices.Count <= 0) continue;
-
-            var center = Vec3.Zero;
-            foreach (var ind in face.Indices) center += WorldVertices[ind];
-            center /= face.Indices.Count;
-
-            for (int i = 0; i < 5; i++)
-                populate.Add(Sprite.CreateBillboard(World, center + face.Plane.Normal * i * 1.5f, "circle", 1, Color.Green));
         }
     }
 }

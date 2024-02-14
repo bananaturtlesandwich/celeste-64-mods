@@ -3,7 +3,7 @@ global using Celeste64;
 namespace Kevin;
 
 public sealed class KevinPlugin : GameMod {
-    public override void OnModLoaded() =>
-        AddActorFactory("Kevin", new Map.ActorFactory((map, entity) => new Kevin()) { IsSolidGeometry = true });
+    public override void OnPreMapLoaded(World world, Map map) =>
+        AddActorFactory("Kevin", new((map, entity) => new Kevin()) { IsSolidGeometry = true });
 }
 
