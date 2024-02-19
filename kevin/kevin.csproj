@@ -9,7 +9,7 @@
     <PackageReference Include="SharpGLTF.Runtime" Version="1.0.0-alpha0031" />
     <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
    </ItemGroup>
-  <Target Name="test" AfterTargets="AfterBuild">
+  <Target Name="copy" AfterTargets="AfterBuild">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\DLLs" />
   </Target>
 </Project>
