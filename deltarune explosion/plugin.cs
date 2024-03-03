@@ -12,11 +12,7 @@ public sealed class DeltaruneExplosionPlugin : Celeste64.Mod.GameMod {
 
     public override void OnActorDestroyed(Actor actor) {
         if (actor is not BreakBlock block || player.Destroying) return;
-        // Audio.PlaySound("explosion");
-        // reflection because system isn't public >:p
-        ((FMOD.Studio.System)typeof(Audio).GetField("system", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic).GetValue(null)).getCoreSystem(out var core);
-        core.createSound(@"Mods\deltarune explosion\Sounds\explosion.wav", FMOD.MODE.DEFAULT, out var sound);
-        core.playSound(sound, new FMOD.ChannelGroup(), false, out var channel);
+        Audio.PlaySound("explosion");
         World.Add(new Explosion() { Position = block.Position });
     }
 }
