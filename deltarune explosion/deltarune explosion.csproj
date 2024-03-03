@@ -10,6 +10,6 @@
     <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
    </ItemGroup>
   <Target Name="copy" AfterTargets="AfterBuild">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\DLLs" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\Libraries" />
   </Target>
 </Project>

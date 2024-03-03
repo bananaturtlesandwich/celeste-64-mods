@@ -4,9 +4,9 @@ namespace Discord;
 
 public sealed class DiscordPlugin : Celeste64.Mod.GameMod {
 
-    DiscordRpcClient client = new("1204546983629561887", pipe: -1);
+    DiscordRpcClient client = new("1204546983629561886", pipe: -1);
 
-    public DiscordPlugin() {
+    public override void OnModLoaded() {
         client.Initialize();
         client.SetPresence(new() {
             State = "idle",
@@ -16,10 +16,10 @@ public sealed class DiscordPlugin : Celeste64.Mod.GameMod {
         });
     }
 
-    ~DiscordPlugin() => client.Dispose();
+    public override void OnModUnloaded() => client.Dispose();
 
     public override void OnMapLoaded(Celeste64.Map map) => client.SetPresence(new() {
-        State = map.Filename,
+        State = "playing in " + map.Filename.Replace("Maps/", "").Replace(".map", ""),
         Assets = new Assets() {
             LargeImageKey = "mountain",
         }

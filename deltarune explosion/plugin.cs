@@ -2,7 +2,7 @@ global using Celeste64;
 
 namespace DeltaruneExplosion;
 
-public sealed class DeltaruneExplosionPlugin : GameMod {
+public sealed class DeltaruneExplosionPlugin : Celeste64.Mod.GameMod {
 
     Player player = null;
 
