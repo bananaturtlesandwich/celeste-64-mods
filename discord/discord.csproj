@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C:\Users\Admin\games\Celeste 64\Celeste64.dll"> <Private>false</Private> </Reference>
+    <PackageReference Include="FosterFramework" Version="0.1.16-alpha" />
+    <PackageReference Include="SharpGLTF.Runtime" Version="1.0.0-alpha0031" />
+    <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+   </ItemGroup>
+  <Target Name="copy" AfterTargets="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\DLLs"/>
+    <Copy SourceFiles="$(OutputPath)/DiscordRPC.dll" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\DLLs"/>
+    <Copy SourceFiles="$(OutputPath)/Newtonsoft.Json.dll" DestinationFolder="C:\Users\Admin\games\Celeste 64\Mods\$(ProjectName)\DLLs"/>
+  </Target>
+</Project>
