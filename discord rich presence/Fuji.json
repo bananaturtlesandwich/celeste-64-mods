@@ -1,0 +1,7 @@
+{
+    "Id": "spuds.discordrichpresence",
+    "Name": "discord rich presence",
+    "ModAuthor": "spuds",
+    "Description": "adds discord rich presence to the game",
+    "Version": "1.0.0"
+}

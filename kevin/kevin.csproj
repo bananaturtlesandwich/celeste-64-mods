@@ -6,7 +6,6 @@
   <ItemGroup>
     <Reference Include="C:\Users\Admin\games\Celeste 64\Celeste64.dll"> <Private>false</Private> </Reference>
     <PackageReference Include="FosterFramework" Version="0.1.16-alpha" />
-    <PackageReference Include="SharpGLTF.Runtime" Version="1.0.0-alpha0031" />
     <PackageReference Include="Sledge.Formats.Map" Version="1.1.5" />
    </ItemGroup>
   <Target Name="copy" AfterTargets="AfterBuild">
