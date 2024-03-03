@@ -1,0 +1,16 @@
+@SolidClass = ClockworkRotator : "Rotates like clockwork (doesn't work atm)"
+[
+	speed(float) : : 1 : "how fast the platform moves"
+	rest(float) : : 1 : "how long the platform rests for"
+	target(string) : : : "the direction to this node is the axis of rotation"
+	angle_1(float) : : 90 : "the angle of the first rotation - you can keep adding these"
+]
+
+@SolidClass = ClockworkMover : "Moves from node to node like clockwork"
+[
+	max_speed(float) : : 600 : "the maximum speed the platform moves at"
+	acceleration(float) : : 400 : "how fast the platform accelerates"
+	rest(float) : : 1 : "how long the platform rests for"
+	cycle(integer) : : 1 : "if the platform cycles"
+	target_1(string) : : : "the first node to go to - you can keep adding these"
+]
