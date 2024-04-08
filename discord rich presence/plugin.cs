@@ -39,6 +39,5 @@ public sealed class DiscordPlugin : Celeste64.Mod.GameMod {
     // }
 
     public override void OnModUnloaded() => client.Dispose();
-    ~DiscordPlugin() => client.Dispose();
 }
 
